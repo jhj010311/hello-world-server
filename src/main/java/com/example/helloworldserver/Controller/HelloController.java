@@ -5,9 +5,9 @@ import com.example.helloworldserver.repository.HelloRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,10 +20,11 @@ public class HelloController {
         return ResponseEntity.ok("Hello, World!");
     }
 
+    @ResponseBody
     @GetMapping("/greeting")
-    public ResponseEntity<String> greeting(@RequestParam String lang) {
+    public String greeting(@RequestParam String lang) {
         Greeting greeting = repository.getByLangCode(lang);
 
-        return ResponseEntity.ok(greeting.getMessage());
+        return greeting.getMessage();
     }
 }
