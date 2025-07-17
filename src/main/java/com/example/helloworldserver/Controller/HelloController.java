@@ -14,9 +14,14 @@ public class HelloController {
     private final HelloRepository repository;
 
     @GetMapping
-    public ResponseEntity<String> hello(@RequestParam String lang) {
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok("Hello, World!");
+    }
+
+    @GetMapping("/greeting")
+    public ResponseEntity<String> greeting(@RequestParam String lang) {
         String message = repository.getMessageByLangCode(lang);
 
-        return ResponseEntity.ok("Hello, World!\nmessage : " + message);
+        return ResponseEntity.ok(message);
     }
 }
