@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HelloRepository extends JpaRepository<Greeting, Long> {
-    String getMessageByLangCode(String langCode);
+
+    Greeting getByLangCode(String lang);
 }

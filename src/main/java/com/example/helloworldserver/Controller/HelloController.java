@@ -1,5 +1,6 @@
 package com.example.helloworldserver.Controller;
 
+import com.example.helloworldserver.domain.Greeting;
 import com.example.helloworldserver.repository.HelloRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,8 @@ public class HelloController {
 
     @GetMapping("/greeting")
     public ResponseEntity<String> greeting(@RequestParam String lang) {
-        String message = repository.getMessageByLangCode(lang);
+        Greeting greeting = repository.getByLangCode(lang);
 
-        return ResponseEntity.ok(message);
+        return ResponseEntity.ok(greeting.getMessage());
     }
 }
